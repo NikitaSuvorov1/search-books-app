@@ -1,28 +1,27 @@
-import {createAsyncThunk,createSlice} from "@reduxjs/toolkit";
-import {API_KEY} from "../../api/constants";
-import api from "../../api/axios";
+import {createSlice} from "@reduxjs/toolkit";
+import {fetchBooks} from "../thunk/booksThunk";
 
 const initialState = {
     items: [],
-    status: "loading"
+    status: "loading",
+    category: "",
+    sortBy: 'relevance',
+    searchValue: ""
 }
-
-export const fetchBooks = createAsyncThunk("books/fetchBooks",async () => {
-    try {
-        const {data} = await api.get(`volumes?q=time&printType=books&startIndex=1&key=${API_KEY}`)
-        return data.items
-    } catch (error) {
-        console.log("Error",error)
-    }
-})
-
-
 
 export const booksSlice = createSlice({
     name: "books",
     initialState,
     reducers: {
-
+        setCategory(state, action) {
+            state.category = action.payload
+        },
+        setSortBy(state, action) {
+            state.sortBy = action.payload
+        },
+        setSearchValue(state, action) {
+            state.searchValue = action.payload
+        }
     },
     extraReducers: {
         [fetchBooks.fulfilled]: (state, action) => {
@@ -41,3 +40,5 @@ export const booksSlice = createSlice({
 })
 
 export const booksReducer = booksSlice.reducer
+
+export const {setSearchValue, setCategory, setSortBy, getMoreBooks} = booksSlice.actions

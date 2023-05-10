@@ -1,0 +1,17 @@
+.root {
+  margin: 0 auto;
+  text-align: center;
+}
+.root input {
+  height: 30px;
+  width: 550px;
+  font-size: 18px;
+  outline: none;
+}
+.root .select {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+/*# sourceMappingURL=search.module.css.map */

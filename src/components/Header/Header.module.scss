@@ -1,0 +1,21 @@
+.root {
+  padding: 20px;
+  align-items: center;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  h1 {
+    text-align: center;
+    font-family: "Cascadia Mono";
+    color: white;
+    font-size: 43px;
+  }
+
+  button {
+    margin-top: 30px;
+    width: 100px;
+    height: 30px;
+  }
+
+
+}
