@@ -1,12 +1,19 @@
 .root {
   width: 100%;
+  margin-top: 30px;
+  text-align: center;
 }
 .root .books {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-rows: auto;
   grid-column-gap: 40px;
   grid-row-gap: 30px;
+  justify-items: center;
+  padding: 30px;
+}
+.root span {
+  font-size: 18px;
 }
 
 /*# sourceMappingURL=home.module.css.map */

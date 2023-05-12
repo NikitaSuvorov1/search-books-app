@@ -1,9 +1,10 @@
 .root {
-  padding: 20px;
+  padding: 20px 20px;
   align-items: center;
-  height: 500px;
   display: flex;
   flex-direction: column;
+  background-color: #babd8d;
+  align-content: center;
 }
 .root h1 {
   text-align: center;

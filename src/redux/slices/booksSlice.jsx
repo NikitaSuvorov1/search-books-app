@@ -2,11 +2,12 @@ import {createSlice} from "@reduxjs/toolkit";
 import {fetchBooks} from "../thunk/booksThunk";
 
 const initialState = {
-    items: [],
-    status: "loading",
     category: "",
     sortBy: 'relevance',
-    searchValue: ""
+    searchValue: "",
+    items: [],
+    status: "loading",
+    startIndex: 1
 }
 
 export const booksSlice = createSlice({
@@ -21,19 +22,23 @@ export const booksSlice = createSlice({
         },
         setSearchValue(state, action) {
             state.searchValue = action.payload
+        },
+        // loadMoreBooks(state, action) {
+        //     state.items = [...state.items,...action.payload]
+        // },
+        setStartIndex(state,action) {
+            state.startIndex = state.startIndex + 10
         }
     },
     extraReducers: {
         [fetchBooks.fulfilled]: (state, action) => {
-            state.items = [...state.items,...action.payload]
+            state.items = action.payload
             state.status = "loaded"
         },
         [fetchBooks.pending]: (state) => {
-            state.items = []
             state.status = "loading"
         },
         [fetchBooks.rejected]: (state) => {
-            state.items = []
             state.status = "rejected"
         }
     }
@@ -41,4 +46,4 @@ export const booksSlice = createSlice({
 
 export const booksReducer = booksSlice.reducer
 
-export const {setSearchValue, setCategory, setSortBy, getMoreBooks} = booksSlice.actions
+export const {setSearchValue, setCategory, setSortBy, loadMoreBooks,setStartIndex} = booksSlice.actions

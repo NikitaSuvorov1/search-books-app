@@ -9,8 +9,7 @@ import {fetchBooks} from "../../redux/thunk/booksThunk";
 export const Search = () => {
 
     const dispatch = useDispatch()
-    const {searchValue,category,sortBy} = useSelector((state) => state.books)
-    const debounceValue = useDebounce(searchValue,1000)
+    const {searchValue} = useSelector((state) => state.books)
 
 
     const handleChangeValue = (e) => {
