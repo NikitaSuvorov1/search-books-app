@@ -1,5 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {fetchBooks} from "../thunk/booksThunk";
+import {fetchBooks,fetchMoreBooks} from "../thunk/booksThunk";
+
 
 const initialState = {
     category: "",
@@ -39,6 +40,16 @@ export const booksSlice = createSlice({
             state.status = "loading"
         },
         [fetchBooks.rejected]: (state) => {
+            state.status = "rejected"
+        },
+        [fetchMoreBooks.fulfilled]: (state, action) => {
+            state.items = [...state.items,...action.payload]
+            state.status = "loaded"
+        },
+        [fetchMoreBooks.pending]: (state) => {
+            state.status = "loading"
+        },
+        [fetchMoreBooks.rejected]: (state) => {
             state.status = "rejected"
         }
     }

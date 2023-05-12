@@ -4,7 +4,7 @@ import {useEffect} from "react";
 import BooksCard from "../../components/Card";
 import {setStartIndex} from "../../redux/slices/booksSlice";
 import useDebounce from "../../hooks/useDebounceHook";
-import {fetchBooks} from "../../redux/thunk/booksThunk";
+import {fetchBooks,fetchMoreBooks} from "../../redux/thunk/booksThunk";
 
 export const Home = () => {
     const {items,category,searchValue,sortBy,startIndex} = useSelector((state) => state.books)
@@ -14,11 +14,12 @@ export const Home = () => {
 
     const handleClick = () => {
         dispatch(setStartIndex())
+        dispatch(fetchMoreBooks({searchValue,category,sortBy,startIndex}))
     }
 
     useEffect(() => {
         dispatch(fetchBooks({searchValue,category,sortBy,startIndex}))
-    },[debounceValue,category,sortBy,startIndex])
+    },[debounceValue,category,sortBy])
 
     return (
 
