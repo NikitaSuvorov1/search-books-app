@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {fetchBooks,fetchMoreBooks} from "../thunk/booksThunk";
+import {fetchBookById, fetchBooks, fetchMoreBooks} from "../thunk/booksThunk";
 
 
 const initialState = {
@@ -9,7 +9,8 @@ const initialState = {
     items: [],
     status: "loading",
     startIndex: 1,
-    flagLoadMore: false
+    flagLoadMore: false,
+    book: {}
 }
 
 export const booksSlice = createSlice({
@@ -34,13 +35,13 @@ export const booksSlice = createSlice({
     },
     extraReducers: {
         [fetchBooks.fulfilled]: (state, action) => {
+
             if (state.flagLoadMore) {
-                state.items = [...state.items,...action.payload]
+                state.items.items = [...state.items?.items,...action.payload?.items]
             } else {
                 state.items = action.payload
             }
             state.flagLoadMore = false
-            // state.items = action.payload
             state.status = "loaded"
         },
         [fetchBooks.pending]: (state) => {
@@ -49,6 +50,16 @@ export const booksSlice = createSlice({
         [fetchBooks.rejected]: (state) => {
             state.status = "rejected"
         },
+
+        [fetchBookById.fulfilled]: (state,action) => {
+            state.book = action.payload
+        },
+        [fetchBookById.rejected]: (state,action) => {
+            state.book = {}
+        },
+        [fetchBookById.pending]: (state,action) => {
+            state.book = {}
+        }
 
     }
 })

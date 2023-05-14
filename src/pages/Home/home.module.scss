@@ -16,4 +16,33 @@
   span {
     font-size: 18px;
   }
+
+  .notFound {
+    text-align: center;
+  }
+
+  @media  screen and (max-width: 1400px) {
+    .books {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto;
+      grid-column-gap: 20px;
+      grid-row-gap: 50px;
+      justify-items: center;
+      padding: 30px;
+    }
+
+    @media  screen and (max-width: 1100px) {
+      .books {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+        grid-column-gap: 0px;
+        grid-row-gap: 50px;
+        justify-items: center;
+        padding: 30px;
+      }
+    }
+  }
 }
+

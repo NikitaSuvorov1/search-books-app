@@ -1,0 +1,15 @@
+.root {
+  display: flex;
+  justify-content: space-around;
+  padding: 60px 50px;
+}
+.root .textBlock {
+  max-width: 400px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.root img {
+  height: 400px;
+  width: 300px;
+}
+
+/*# sourceMappingURL=bookInfo.module.css.map */
